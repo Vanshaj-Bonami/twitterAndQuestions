@@ -1,0 +1,8 @@
+body {
+    font-family: sans-serif;
+    background-color: #fff;
+    color: #000;
+    line-height: 1.5;
+    overflow: hidden;
+    height: 100vh;
+}
