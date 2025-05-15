@@ -74,7 +74,6 @@ export default function LeftSection() {
                 </div>
                 <div className="flex flex-col">
                     <span className="text-lg">{user.fullname}</span>
-                    {/* <span className="text-sm">{user?.username}</span> */}
                 </div>
             </div>
         </div>
