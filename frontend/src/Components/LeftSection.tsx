@@ -43,7 +43,10 @@ const sideBar = [
 ]
 
 export default function LeftSection() {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
+
+    if(loading) return <div>....loading</div>
+
     console.log(user)
     return (<>
         <div className="flex flex-col gap-1 justify-between h-screen">

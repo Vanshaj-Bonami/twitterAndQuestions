@@ -24,64 +24,64 @@ const api = axios.create({
   withCredentials: true,
 });
 
-let isRefreshing = false;
-let failedQueue: Array<{ resolve: any; reject: any }> = [];
+// let isRefreshing = false;
+// let failedQueue: Array<{ resolve: any; reject: any }> = [];
 
-const processQueue = (error: any, token: string | null = null) => {
-  failedQueue.forEach((prom) => {
-    if (error) prom.reject(error);
-    else prom.resolve(token);
-  });
-  failedQueue = [];
-};
+// const processQueue = (error: any, token: string | null = null) => {
+//   failedQueue.forEach((prom) => {
+//     if (error) prom.reject(error);
+//     else prom.resolve(token);
+//   });
+//   failedQueue = [];
+// };
 
-api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-    const isRefreshTokenRequest =
-      originalRequest.url?.includes("/api/user/refresh-token");
+// api.interceptors.response.use(
+//   (response) => response,
+//   async (error) => {
+//     const originalRequest = error.config;
+//     const isRefreshTokenRequest =
+//       originalRequest.url?.includes("/api/user/refresh-token");
 
-    console.log("[AXIOS] Error on:", originalRequest.url, "Status:", error.response?.status, "isRefreshTokenRequest:", isRefreshTokenRequest, "Retry:", originalRequest._retry);
+//     console.log("[AXIOS] Error on:", originalRequest.url, "Status:", error.response?.status, "isRefreshTokenRequest:", isRefreshTokenRequest, "Retry:", originalRequest._retry);
 
-    if (
-      error.response?.status === 401 &&
-      !originalRequest._retry &&
-      !isRefreshTokenRequest
-    ) {
-      originalRequest._retry = true;
+//     if (
+//       error.response?.status === 401 &&
+//       !originalRequest._retry &&
+//       !isRefreshTokenRequest
+//     ) {
+//       originalRequest._retry = true;
 
-      if (isRefreshing) {
-        return new Promise((resolve, reject) => {
-          failedQueue.push({ resolve, reject });
-        }).then(() => api(originalRequest));
-      }
+//       if (isRefreshing) {
+//         return new Promise((resolve, reject) => {
+//           failedQueue.push({ resolve, reject });
+//         }).then(() => api(originalRequest));
+//       }
 
-      isRefreshing = true;
+//       isRefreshing = true;
 
-      try {
-        await api.post("/api/user/refresh-token");
-        processQueue(null);
-        return api(originalRequest);
-      } catch (err) {
-        processQueue(err, null);
-        window.location.href = "/login";
-        return Promise.reject(err);
-      } finally {
-        isRefreshing = false;
-      }
-    }
+//       try {
+//         await api.post("/api/user/refresh-token");
+//         processQueue(null);
+//         return api(originalRequest);
+//       } catch (err) {
+//         processQueue(err, null);
+//         window.location.href = "/login";
+//         return Promise.reject(err);
+//       } finally {
+//         isRefreshing = false;
+//       }
+//     }
 
-    if (
-      error.response?.status === 401 &&
-      isRefreshTokenRequest
-    ) {
-      window.location.href = "/login";
-      return Promise.reject(error);
-    }
+//     if (
+//       error.response?.status === 401 &&
+//       isRefreshTokenRequest
+//     ) {
+//       window.location.href = "/login";
+//       return Promise.reject(error);
+//     }
 
-    return Promise.reject(error);
-  }
-);
+//     return Promise.reject(error);
+//   }
+// );
 
 export default api;

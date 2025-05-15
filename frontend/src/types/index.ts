@@ -31,6 +31,7 @@ export interface ITweet {
 export interface AuthContextType {
     user: IUser | null;
     setUser: (user: IUser | null) => void;
+    loading: boolean;
 }
 
 export interface ApiResponse<T> {
