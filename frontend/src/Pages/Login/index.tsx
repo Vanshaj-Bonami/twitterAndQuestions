@@ -21,9 +21,10 @@ export default function Login() {
 
     const handleSubmit = async () => {
         try {
-            const response = await LoginUser(loginFormData)
+            const response = await LoginUser(loginFormData);
             if(response && response.success){
-                setUser(response?.data)
+                const user = response?.data?.user;
+                setUser(user);
                 handleClear();
                 showToast("success", response?.message || "User logged in successfully");
                 navigate("/home")

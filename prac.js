@@ -33,3 +33,16 @@ const person = {
 const person2 = {...person};
 person.details.age = 30;
 console.log(person2.details.age);
+
+console.log("start")
+setTimeout(() => {
+    console.log("inside setTimeout")
+}, 1000);
+const p = new Promise((res,rej) => {
+    console.log("promise")
+    setTimeout(() => {
+        console.log("promise resolved")
+    }, 1000);
+    res("promise resolved")
+})
+console.log("end")

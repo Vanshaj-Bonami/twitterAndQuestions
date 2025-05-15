@@ -11,8 +11,7 @@ export interface LoginInput {
 }
 
 export interface IUser {
-    id: number;
-    name: string;
+    _id: string;
     email: string;
     fullname: string;
     username: string;

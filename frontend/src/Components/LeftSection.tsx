@@ -45,9 +45,9 @@ const sideBar = [
 export default function LeftSection() {
     const { user, loading } = useAuth();
 
-    if(loading) return <div>....loading</div>
+    if (loading || !user) return <div>....loading</div>
 
-    console.log(user)
+    console.log(user, "user in left section")
     return (<>
         <div className="flex flex-col gap-1 justify-between h-screen">
             <div className="flex flex-col gap-1">
@@ -73,7 +73,7 @@ export default function LeftSection() {
                     <img className="rounded-full" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="" />
                 </div>
                 <div className="flex flex-col">
-                    <span className="text-lg">{user?.fullname}</span>
+                    <span className="text-lg">{user.fullname}</span>
                     {/* <span className="text-sm">{user?.username}</span> */}
                 </div>
             </div>

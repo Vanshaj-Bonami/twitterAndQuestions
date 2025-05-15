@@ -10,9 +10,9 @@ export const RegisterUser = async (data: RegisterInput): Promise<ApiResponse<IUs
     }
 };
 
-export const LoginUser = async (data: LoginInput): Promise<ApiResponse<IUser>> => {
+export const LoginUser = async (data: LoginInput): Promise<ApiResponse<{user:IUser,accessToken:string, refreshToken:string}>> => {
     try {
-        const response = await api.post<ApiResponse<IUser>>("/api/user/login", data);
+        const response = await api.post<ApiResponse<{user:IUser,accessToken:string, refreshToken:string}>>("/api/user/login", data);
         return response.data;
     } catch (error) {
         throw error;
