@@ -34,7 +34,7 @@ export const Button = ({ label, disabled, onClick }: IButtonProps) => {
     return (
         <button
             disabled={disabled || false}
-            className={`w-full bg-black font-semibold rounded-3xl text-white px-5 py-2.5 transition-all ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
+            className={`w-full bg-black font-semibold rounded-full text-white ${label === "Post" && !disabled ? "px-5 py-4" : "px-5 py-2.5"} transition-all ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
             onClick={onClick}
         >
             {label}

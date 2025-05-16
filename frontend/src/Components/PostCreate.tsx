@@ -28,9 +28,7 @@ export default function PostCreate() {
 
     return (
         <div className="flex gap-5 px-3 py-4 border-b border-gray-200">
-            <div className="avatar w-17">
-                <img className="rounded-full" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="" />
-            </div>
+            <img className="rounded-full w-12 h-12" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="" />
             <div className="flex flex-col gap-2 w-full">
                 <div className="w-full h-auto border-b border-gray-200">
                     <TextareaAutosize

@@ -20,10 +20,10 @@ export interface IUser {
 }
 
 export interface ITweet {
-    _id: number;
+    _id: string;
     content: string;
     media?: string[];
-    author: number;
+    author: IUser;
     createdAt: string;
 }
 
@@ -39,4 +39,3 @@ export interface ApiResponse<T> {
     message?: string;
     data: T;
 }
-  

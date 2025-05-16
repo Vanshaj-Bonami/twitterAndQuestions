@@ -96,7 +96,7 @@ userSchema.methods.generateRefreshToken = function (this: IUser): string {
     },
     REFRESH_TOKEN_SECRET!,
     {
-      expiresIn: "2m",
+      expiresIn: "1d",
     }
   );
 };
