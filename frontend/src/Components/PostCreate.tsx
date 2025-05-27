@@ -2,7 +2,8 @@ import TextareaAutosize from "react-textarea-autosize";
 import { Button } from "./Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDebounce } from "../hooks";
 
 export default function PostCreate() {
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -10,6 +11,7 @@ export default function PostCreate() {
         content: "",
         media: []
     });
+    const debouncedValue = useDebounce(content, 1000);  
 
     const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setContent({
@@ -17,7 +19,7 @@ export default function PostCreate() {
             content: e.target.value
         });
     }
-    console.log(content);
+
     const handleFileClick = () => {
         fileInputRef.current?.click();
     }
@@ -25,6 +27,12 @@ export default function PostCreate() {
     const handleCreatePost = () => {
         console.log(content);
     }
+
+    useEffect(() => {
+        if(debouncedValue){
+            console.log(debouncedValue, "debouncedValue");
+        }
+    }, [debouncedValue]);
 
     return (
         <div className="flex gap-5 px-3 py-4 border-b border-gray-200">
